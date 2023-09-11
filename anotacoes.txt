@@ -1,0 +1,53 @@
+Teste Unitários
+    Objetivo verificar as menores unidades de forma isolada, garantindo que a lógica de cada uma delas está correta 
+    e funcionando como o esperado.
+
+TDD - Testar antes implementar depois
+    Etapas:
+    * Red: escrevemos um teste que falha, pois ainda não temos a implementação da funcionalidade.
+    * Green: implementamos o código necessário para fazer o teste passar.
+    * Refactor: refatoramos o código para torná-lo mais limpo e eficiente.
+
+Given - When - Then
+class TestClass:
+    def test_quando_idade_16_05_1994_retornar_29(self):
+        entrada = '16/05/1994' # Given-Contexto
+        esperado = 29
+
+        funcionario_teste = Funcionario('Teste', entrada, 12000)
+        resultado = funcionario_teste.idade() # When-ação
+
+        assert resultado == esperado  # Then-desfecho
+
+
+pytest -v -k "nome do test ou parte dele"
+pytest -v - rodar todos os testes
+
+Markers -  criar tags para os testes
+    pytest -v -m calcular_bonus (personalizado)
+    pytest --markers (markers padrão) https://docs.pytest.org/en/7.1.x/how-to/mark.html#mark
+
+arquivo pytest.ini possibilita alterações nas configurações padrão do Pytest https://docs.pytest.org/en/7.1.x/reference/reference.html#ini-options-ref
+
+#pip install pytest-cov==3.0.0
+#pip freeze > requirements.txt
+
+Cobertura de teste - pytest --cov="diretorio" "nome da pasta de testes" checar cobertura de codigo 
+    ex.: pytest --cov=codigo tests/
+
+Retornar a linha que está sem cobertura:
+    ex.:pytest --cov=codigo tests/ --cov-report term-missing
+        pytest --cov=codigo tests/ --cov-report html (gera o arquivo( htmlcov ) permiti abrir no navegador para visualizar mais detalhes)
+
+
+Exceção para teste - caso das funções próprias da linguaguem python
+    .coveragerc - configurações para o relatório (excluir linha do teste)
+        source= ./codigo (caminho para os testes)
+        directory = coverage_realatorio_html (cria a pasta e acrescenta o arquivo com o relatório em html)
+
+Gerar relatórios em formato XML:
+    pytest --junitxml report.xml (relatório Pytest)
+    pytest --cov-report xml (relatório Coverage - coverage.xml)
+
+
+
